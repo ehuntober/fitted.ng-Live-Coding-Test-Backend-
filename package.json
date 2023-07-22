@@ -1,0 +1,27 @@
+{
+  "name": "fitted",
+  "version": "1.0.0",
+  "description": "fitted.ng Live Coding Test (Backend)",
+  "main": "app.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"body-parser": "^1.20.2",
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.16.4",
+		"mongodb": "^5.7.0",
+		"mongoose": "^7.3.2"
+	},
+	"repository": {
+		"url": "https://github.com/ehuntober/fitted.ng-Live-Coding-Test-Backend-"
+	},
+  "keywords": [	"node",
+		"express"],
+  "author": "",
+  "license": "ISC"
+}
+
+
+
