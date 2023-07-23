@@ -3,25 +3,31 @@
   "version": "1.0.0",
   "description": "fitted.ng Live Coding Test (Backend)",
   "main": "app.js",
-	"scripts": {
-		"start": "node index.js"
-	},
-	"dependencies": {
-		"body-parser": "^1.20.2",
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.16.4",
-		"mongodb": "^5.7.0",
-		"mongoose": "^7.3.2"
-	},
-	"repository": {
-		"url": "https://github.com/ehuntober/fitted.ng-Live-Coding-Test-Backend-"
-	},
-  "keywords": [	"node",
-		"express"],
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.4.0",
+    "uuid": "^9.0.0"
+  },
+  "repository": {
+    "url": "git+https://github.com/ehuntober/fitted.ng-Live-Coding-Test-Backend-.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehuntober/fitted.ng-Live-Coding-Test-Backend-/issues"
+  },
+  "homepage": "https://github.com/ehuntober/fitted.ng-Live-Coding-Test-Backend-#readme"
 }
-
-
-
