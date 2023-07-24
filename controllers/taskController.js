@@ -53,7 +53,7 @@ exports.updateTaskById = async (req, res) => {
     return res.status(403).json({ error: 'Access denied' });
   } catch (err) {
     console.error('Error updating task by ID:', err);
-    res.status(500).json({ error: 'Failed to update task' });
+    res.status(404).json({ error: 'There is no task at that id' });
   }
 };
 
@@ -125,7 +125,7 @@ exports.deleteTaskById = async (req, res) => {
     // Check if the user is a Super Admin or if the task is assigned to the user
     if (req.user.role === 'Super Admin' || task.assignedUser === req.user._id) {
       // Delete the task
-      await task.remove();
+      await Task.findByIdAndDelete(taskId);
 
       return res.status(204).end();
     }
