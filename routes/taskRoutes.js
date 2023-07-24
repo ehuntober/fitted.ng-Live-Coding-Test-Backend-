@@ -14,10 +14,13 @@ router.get('/v1/tasks/:id', authMiddleware, taskController.getTaskById);
 router.delete('/v1/tasks/:id', authMiddleware, taskController.deleteTaskById);
 router.put('/v1/tasks/:id', authMiddleware, taskController.updateTaskById);
 router.post('/v1/tasks/bulkadd', authMiddleware, taskController.bulkAddTasks);
-router.delete('/v1/tasks/bulkdelete', authMiddleware, taskController.bulkDeleteTasks);
+router.post('/v1/tasks/bulkdelete', authMiddleware, taskController.bulkDeleteTasks);
 
 // Protected routes for ordinary users with limited access
-router.get('/v1/tasks/:id', authMiddleware, userAuthorizationMiddleware, taskController.getTaskById);
-router.put('/v1/tasks/:id', authMiddleware, userAuthorizationMiddleware, taskController.updateTaskById);
+router.get('/tasks/assigned', authMiddleware, taskController.getTasksAssignedToUser);
+// router.get('/v1/tasks/:id', authMiddleware, userAuthorizationMiddleware, taskController.getTaskById);
+// router.put('/v1/tasks/:id', authMiddleware, userAuthorizationMiddleware, taskController.updateTaskById);
+
+
 
 module.exports = router;

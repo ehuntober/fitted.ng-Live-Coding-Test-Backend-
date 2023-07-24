@@ -11,8 +11,8 @@ router.post('/superadmin/login', authController.loginSuperAdmin);
 router.post('/user/signup', authController.signupUser);
 router.post('/user/login', authController.loginUser);
 
-router.get('/v1/users', authMiddleware, authController.getRegularUsers);
-router.get('/v1/users/:username', authMiddleware, authController.getSpecificUserByUsername);
+router.get('/users', authMiddleware, authController.getRegularUsers);
+router.get('/users/:username', authMiddleware, authController.getSpecificUserByUsername);
 
 
 

@@ -5,9 +5,19 @@ const mongoose = require('mongoose');
 
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route for the homepage
+app.get('/', (req, res) => {
+    // Send the "index.html" file as the response
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 
 
 // MongoDB connection string from .env
