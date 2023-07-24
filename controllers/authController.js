@@ -131,5 +131,46 @@ exports.loginSuperAdmin = async (req, res) => {
 };
 
 
+exports.getRegularUsers = async (req, res) => {
+  try {
+    // Check if the user is a Super Admin
+    if (req.user.role !== 'Super Admin') {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    // Fetch all Ordinary users and their user IDs from the database
+    const ordinaryUsers = await User.find({ role: 'Regular User' }).select('_id username');
+
+    return res.status(200).json({ ordinaryUsers });
+  } catch (err) {
+    console.error('Error fetching Ordinary users:', err);
+    res.status(500).json({ error: 'Failed to fetch Regular User' });
+  }
+};
+
+exports.getSpecificUserByUsername = async (req, res) => {
+  const username = req.params.username;
+  try {
+    // Check if the user is a Super Admin
+    if (req.user.role !== 'Super Admin') {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    // Fetch the specific user and their user ID from the database
+    const user = await User.findOne({ username }).select('_id username');
+
+    // If the user is not found, return an error
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json({ user });
+  } catch (err) {
+    console.error('Error fetching specific user:', err);
+    res.status(500).json({ error: 'Failed to fetch specific user' });
+  }
+};
+
+
 
 

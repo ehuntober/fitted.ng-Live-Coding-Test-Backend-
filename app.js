@@ -29,7 +29,7 @@ mongoose
 
 // Routes
 app.use('/v1/auth', authRoutes); // Authentication routes
-app.use('/tasks', taskRoutes); // Task management routes
+app.use('/', taskRoutes); // Task management routes
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
