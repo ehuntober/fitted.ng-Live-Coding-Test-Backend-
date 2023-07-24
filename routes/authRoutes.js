@@ -14,8 +14,5 @@ router.post('/user/login', authController.loginUser);
 router.get('/users', authMiddleware, authController.getRegularUsers);
 router.get('/users/:username', authMiddleware, authController.getSpecificUserByUsername);
 
-
-
-
 module.exports = router;
 

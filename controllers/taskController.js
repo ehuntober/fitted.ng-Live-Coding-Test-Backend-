@@ -2,61 +2,6 @@ const Task = require('../models/task');
 const User = require('../models/user');
 const mongoose = require('mongoose');
 
-
-// exports.getTaskById = async (req, res) => {
-//   const taskId = req.params.id;
-//   try {
-//     const task = await Task.findById(taskId);
-//     if (!task) {
-//       return res.status(404).json({ error: 'Task not found' });
-//     }
-//     if (req.user.role === 'Super Admin' || task.assignedUser === req.user._id) {
-//       return res.status(200).json(task);
-//     }
-
-//     return res.status(403).json({ error: 'Access denied' });
-//   } catch (err) {
-//     console.error('Error fetching task by ID:', err);
-//     res.status(404).json({ error: "There is no task at that id"
-//   });
-//   }
-// };
-
-
-
-// exports.updateTaskById = async (req, res) => {
-//   const taskId = req.params.id;
-//   const { title, is_completed } = req.body;
-
-//   try {
-//     // Find the task by ID
-//     const task = await Task.findById(taskId);
-
-//     // If the task is not found, return an error
-//     if (!task) {
-//       return res.status(404).json({ error: 'Task not found' });
-//     }
-
-//     // Check if the user is a Super Admin or if the task is assigned to the user
-//     if (req.user.role === 'Super Admin' || task.assignedUser === req.user._id) {
-//       // Update the task with the provided data
-//       task.title = title;
-//       task.is_completed = is_completed;
-//       await task.save();
-
-//       return res.status(204).end();
-//     }
-
-//     return res.status(403).json({ error: 'Access denied' });
-//   } catch (err) {
-//     console.error('Error updating task by ID:', err);
-//     res.status(404).json({ error: 'There is no task at that id' });
-//   }
-// };
-
-
-
-
 exports.getTaskById = async (req, res) => {
   const taskId = req.params.id;
   try {
@@ -111,8 +56,6 @@ exports.updateTaskById = async (req, res) => {
 
 
 
-
-
 exports.createTask = async (req, res) => {
   const { title, assignedUser, is_completed } = req.body;
 
@@ -151,45 +94,6 @@ exports.createTask = async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-// exports.deleteTaskById = async (req, res) => {
-//   const taskId = req.params.id;
-
-//   try {
-//     // Find the task by ID
-//     const task = await Task.findById(taskId);
-
-//     // If the task is not found, return an error
-//     if (!task) {
-//       return res.status(404).json({ error: 'Task not found' });
-//     }
-
-//     // Check if the user is a Super Admin or if the task is assigned to the user
-//     if (req.user.role === 'Super Admin' || task.assignedUser === req.user._id) {
-//       // Delete the task
-//       await Task.findByIdAndDelete(taskId);
-
-//       return res.status(204).end();
-//     }
-
-//     return res.status(403).json({ error: 'Access denied' });
-//   } catch (err) {
-//     console.error('Error deleting task by ID:', err);
-//     res.status(500).json({ error: 'Failed to delete task' });
-//   }
-// };
-
-
 exports.deleteTaskById = async (req, res) => {
   const taskId = req.params.id;
 
@@ -221,39 +125,6 @@ exports.deleteTaskById = async (req, res) => {
     res.status(500).json({ error: 'Failed to delete task' });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 exports.bulkAddTasks = async (req, res) => {
@@ -338,58 +209,6 @@ async function areTasksAssignedToUser(tasks, userId) {
   // Check if all valid tasks are assigned to the user
   return validTasks.length === filteredTaskIds.length;
 }
-
-
-
-/// Bulk delete 2
-
-
-// exports.bulkDeleteTasks2 = async (req, res) => {
-//   const taskIdsParam = req.query.taskIds;
-
-//   if (!taskIdsParam) {
-//     return res.status(400).json({ error: 'taskIds parameter is missing in the query' });
-//   }
-
-//   const taskIds = taskIdsParam.split(',');
-
-//   try {
-//     // Check if the user is a Super Admin or if the tasks are assigned to the user
-//     if (req.user.role === 'Super Admin' || (await areTasksAssignedToUser(taskIds, req.user._id))) {
-//       // Map the task IDs to valid ObjectId instances
-//       const validTaskIds = taskIds.map(taskId => {
-//         try {
-//           return mongoose.Types.ObjectId(taskId);
-//         } catch (err) {
-//           return null; // If invalid, return null
-//         }
-//       });
-
-//       // Remove any null (invalid) task IDs from the array
-//       const filteredTaskIds = validTaskIds.filter(taskId => taskId !== null);
-
-//       // Delete tasks using the "deleteMany" method
-//       await Task.deleteMany({ _id: { $in: filteredTaskIds } });
-
-//       return res.status(204).end();
-//     }
-
-//     return res.status(403).json({ error: 'Access denied' });
-//   } catch (err) {
-//     console.error('Error bulk deleting tasks:', err);
-//     res.status(500).json({ error: 'Failed to bulk delete tasks' });
-//   }
-// };
-
-// // Helper function to check if all tasks are assigned to a specific user
-// async function areTasksAssignedToUser(taskIds, userId) {
-//   // Find tasks assigned to the user and filter out any invalid task IDs
-//   const validTasks = await Task.find({ _id: { $in: taskIds }, assignedUser: userId });
-
-//   // Check if all valid tasks are assigned to the user
-//   return validTasks.length === taskIds.length;
-// }
-
 
 
 exports.getAllTasks = async (req, res) => {
