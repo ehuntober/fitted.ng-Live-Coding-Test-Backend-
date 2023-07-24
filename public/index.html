@@ -31,6 +31,36 @@
       <h2>Endpoints</h2>
     <h2>Endpoints</h2>
 
+    <h3>SignUp for Admin User</h3>
+    <p><strong>URL:</strong> <code>/v1/auth/superadmin/signup</code></p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Description:</strong> Admin User Registration.</p>
+    <h4>Request Body:</h4>
+    <pre><code>{
+      "username": "SAdmin",
+      "password": "123456"
+    }
+    </code></pre>
+    <h4>Response:</h4>
+    <pre><code>{
+     "Admin User successfully registered"
+    }</code></pre>
+
+    <h3>SignUp for Regular User</h3>
+    <p><strong>URL:</strong> <code>/v1/auth/user/signup</code></p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Description:</strong> Regular User Registration.</p>
+    <h4>Request Body:</h4>
+    <pre><code>{
+      "username": "modern",
+      "password": "123456"
+    }
+    </code></pre>
+    <h4>Response:</h4>
+    <pre><code>{
+     "Regular User successfully registered"
+    }</code></pre>
+
 
     <h3>Login</h3>
   <p><strong>URL:</strong> <code>/v1/auth/login</code></p>
