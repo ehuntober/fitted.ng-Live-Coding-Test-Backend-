@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>API Documentation</h1>
+  </header>
+
+  <main>
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>Welcome to the API documentation. This document provides detailed information about the API endpoints and how to use them.</p>
+    </section>
+
+    <section id="base-url">
+      <h2>Base URL</h2>
+      <p>The base URL for all API endpoints is: <code>http://-your-above-url-</code></p>
+    </section>
+
+    <section id="authentication">
+      <h2>Authentication</h2>
+      <p>All protected routes require a valid JWT token to be included in the <code>Authorization</code> header of the HTTP request. To obtain a JWT token, send a POST request to <code>/v1/auth/login</code> with valid user credentials. The response will include a JWT token that you can use for authentication.</p>
+    </section>
+
+    <section id="endpoints">
+      <h2>Endpoints</h2>
+    <h2>Endpoints</h2>
+
+
+    <h3>Login</h3>
+  <p><strong>URL:</strong> <code>/v1/auth/login</code></p>
+  <p><strong>Method:</strong> POST</p>
+  <p><strong>Description:</strong> Authenticate user and obtain a JWT token.</p>
+  <h4>Request Body:</h4>
+  <pre><code>{
+    "username": "user123",
+    "password": "password123"
+  }</code></pre>
+  <h4>Response:</h4>
+  <pre><code>{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGJkZjNhY2I5MGU5NmExZTAyNDQ4NTQiLCJpYXQiOjE2MjkyNDc3MjJ9.QGZNgOlvPEhsJdp-CQcYGKTiVcb-EA7i9yYt48SlAaI"
+  }</code></pre>
+
+  <h3>Create Task</h3>
+  <p><strong>URL:</strong> <code>/v1/tasks</code></p>
+  <p><strong>Method:</strong> POST</p>
+  <p><strong>Description:</strong> Create a new task.</p>
+  <h4>Request Body:</h4>
+  <pre><code>{
+    "title": "Task 1",
+    "assignedUser": "user123",
+    "is_completed": false
+  }</code></pre>
+  <h4>Response:</h4>
+  <pre><code>{
+    "id": "64bdf3acb90e96a1e0244954"
+  }</code></pre>
+
+
+  <h3>Get All Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks</code></p>
+<p><strong>Method:</strong> GET</p>
+<p><strong>Description:</strong> Get a list of all tasks.</p>
+<h4>Response:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "_id": "64bdf3acb90e96a1e0244954",
+      "title": "Task 1",
+      "assignedUser": "user123",
+      "is_completed": false
+    },
+    {
+      "_id": "64bdf7da191eba1c6e891c51",
+      "title": "Task 2",
+      "assignedUser": "user456",
+      "is_completed": true
+    }
+  ]
+}</code></pre>
+
+<h3>Get Single Task</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> GET</p>
+<p><strong>Description:</strong> Get a single task by its ID.</p>
+<h4>Response:</h4>
+<pre><code>{
+  "_id": "64bdf3acb90e96a1e0244954",
+  "title": "Task 1",
+  "assignedUser": "user123",
+  "is_completed": false
+}</code></pre>
+
+<h3>Update Task</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> PUT</p>
+<p><strong>Description:</strong> Update an existing task.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "title": "Updated Task 1",
+  "is_completed": true
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{}</code></pre>
+
+<h3>Delete Task</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> DELETE</p>
+<p><strong>Description:</strong> Delete a task by its ID.</p>
+<h4>Response:</h4>
+<pre><code>{}</code></pre>
+
+
+<h3>Create Task</h3>
+<p><strong>URL:</strong> <code>/v1/tasks</code></p>
+<p><strong>Method:</strong> POST</p>
+<p><strong>Description:</strong> Create a new task.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "title": "New Task",
+  "assignedUser": "user123",
+  "is_completed": false
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{
+  "id": "64bdf3acb90e96a1e0244954"
+}</code></pre>
+
+<h3>Bulk Add Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/bulkadd</code></p>
+<p><strong>Method:</strong> POST</p>
+<p><strong>Description:</strong> Bulk add multiple tasks.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "title": "Task 1",
+      "assignedUser": "user123",
+      "is_completed": false
+    },
+    {
+      "title": "Task 2",
+      "assignedUser": "user456",
+      "is_completed": true
+    }
+  ]
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{
+  "tasks": [
+    { "id": "64bdf3acb90e96a1e0244954" },
+    { "id": "64bdf7da191eba1c6e891c51" }
+  ]
+}</code></pre>
+
+<h3>Bulk Delete Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/bulkdelete</code></p>
+<p><strong>Method:</strong> POST</p>
+<p><strong>Description:</strong> Bulk delete multiple tasks.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "tasks": [
+    { "id": "64bdf3acb90e96a1e0244954" },
+    { "id": "64bdf7da191eba1c6e891c51" }
+  ]
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{}</code></pre>
+
+
+<h3>Get All Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks</code></p>
+<p><strong>Method:</strong> GET</p>
+<p><strong>Description:</strong> Fetch all tasks.</p>
+<h4>Response:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "_id": "64bdf3acb90e96a1e0244954",
+      "title": "Task 1",
+      "assignedUser": "user123",
+      "is_completed": false
+    },
+    {
+      "_id": "64bdf7da191eba1c6e891c51",
+      "title": "Task 2",
+      "assignedUser": "user456",
+      "is_completed": true
+    }
+  ]
+}</code></pre>
+
+<h3>Get Task by ID</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> GET</p>
+<p><strong>Description:</strong> Fetch a single task by its ID.</p>
+<h4>Response:</h4>
+<pre><code>{
+  "_id": "64bdf3acb90e96a1e0244954",
+  "title": "Task 1",
+  "assignedUser": "user123",
+  "is_completed": false
+}</code></pre>
+
+<h3>Update Task by ID</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> PUT</p>
+<p><strong>Description:</strong> Update a task by its ID.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "title": "Updated Task",
+  "is_completed": true
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{}</code></pre>
+
+
+<h3>Delete Task by ID</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> DELETE</p>
+<p><strong>Description:</strong> Delete a task by its ID.</p>
+<h4>Response:</h4>
+<pre><code>{}</code></pre>
+
+<h3>Bulk Add Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/bulkadd</code></p>
+<p><strong>Method:</strong> POST</p>
+<p><strong>Description:</strong> Bulk add tasks.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "title": "Task 1",
+      "assignedUser": "user123",
+      "is_completed": false
+    },
+    {
+      "title": "Task 2",
+      "assignedUser": "user456",
+      "is_completed": true
+    }
+  ]
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "id": "64bdf3acb90e96a1e0244954"
+    },
+    {
+      "id": "64bdf7da191eba1c6e891c51"
+    }
+  ]
+}</code></pre>
+
+<h3>Bulk Delete Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/bulkdelete</code></p>
+<p><strong>Method:</strong> POST</p>
+<p><strong>Description:</strong> Bulk delete tasks.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "id": "64bdf3acb90e96a1e0244954"
+    },
+    {
+      "id": "64bdf7da191eba1c6e891c51"
+    }
+  ]
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{}</code></pre>
+
+<h3>Get Tasks Assigned to User</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/assigned</code></p>
+<p><strong>Method:</strong> GET</p>
+<p><strong>Description:</strong> Get all tasks assigned to the logged-in user.</p>
+<h4>Response:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "_id": "64bdf3acb90e96a1e0244954",
+      "title": "Task 1",
+      "assignedUser": "user123",
+      "is_completed": false
+    },
+    {
+      "_id": "64bdf7da191eba1c6e891c51",
+      "title": "Task 2",
+      "assignedUser": "user123",
+      "is_completed": true
+    }
+  ]
+}</code></pre>
+
+
+<h3>Update Task by ID</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> PUT</p>
+<p><strong>Description:</strong> Update a task by its ID. Only the task owner or Super Admin can perform this action.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "title": "Updated Task Title",
+  "is_completed": true
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>Status Code: 204 No Content</code></pre>
+
+<h3>Delete Task by ID</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> DELETE</p>
+<p><strong>Description:</strong> Delete a task by its ID. Only the task owner or Super Admin can perform this action.</p>
+<h4>Response:</h4>
+<pre><code>Status Code: 204 No Content</code></pre>
+
+<h3>Bulk Add Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/bulkadd</code></p>
+<p><strong>Method:</strong> POST</p>
+<p><strong>Description:</strong> Bulk add multiple tasks. Only the Super Admin can perform this action.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "tasks": [
+    {
+      "title": "Task 1",
+      "assignedUser": "user123",
+      "is_completed": false
+    },
+    {
+      "title": "Task 2",
+      "assignedUser": "user456",
+      "is_completed": true
+    }
+  ]
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>{
+  "tasks": [
+    { "id": "64bdf3acb90e96a1e0244954" },
+    { "id": "64bdf7da191eba1c6e891c51" }
+  ]
+}</code></pre>
+
+<h3>Bulk Delete Tasks</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/bulkdelete</code></p>
+<p><strong>Method:</strong> POST</p>
+<p><strong>Description:</strong> Bulk delete multiple tasks by their IDs. Only the Super Admin or users assigned to the tasks can perform this action.</p>
+<h4>Request Body:</h4>
+<pre><code>{
+  "tasks": [
+    { "id": "64bdf3acb90e96a1e0244954" },
+    { "id": "64bdf7da191eba1c6e891c51" }
+  ]
+}</code></pre>
+<h4>Response:</h4>
+<pre><code>Status Code: 204 No Content</code></pre>
+
+
+
+<h3>Get Tasks Assigned to User</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/assigned</code></p>
+<p><strong>Method:</strong> GET</p>
+<p><strong>Description:</strong> Get all tasks assigned to the logged-in user. Only logged-in users with assigned tasks can perform this action.</p>
+<h4>Response:</h4>
+<pre><code>Status Code: 200 OK</code></pre>
+<pre><code>{
+  "tasks": [
+    {
+      "_id": "64bdf3acb90e96a1e0244954",
+      "title": "Task 1",
+      "assignedUser": "user123",
+      "is_completed": false
+    },
+    {
+      "_id": "64bdf7da191eba1c6e891c51",
+      "title": "Task 2",
+      "assignedUser": "user123",
+      "is_completed": true
+    }
+  ]
+}</code></pre>
+
+<h3>Get Single Assigned Task</h3>
+<p><strong>URL:</strong> <code>/v1/tasks/:id</code></p>
+<p><strong>Method:</strong> GET</p>
+<p><strong>Description:</strong> Get a single task assigned to the logged-in user by its ID. Only logged-in users with access to the assigned task can perform this action.</p>
+<h4>Response:</h4>
+<pre><code>Status Code: 200 OK</code></pre>
+<pre><code>{
+  "_id": "64bdf3acb90e96a1e0244954",
+  "title": "Task 1",
+  "assignedUser": "user123",
+  "is_completed": false
+}</code></pre>
+<pre><code>Status Code: 404 Not Found</code></pre>
+<pre><code>{ "error": "Task not found" }</code></pre>
+<pre><code>Status Code: 403 Forbidden</code></pre>
+<pre><code>{ "error": "Access denied" }</code></pre>
+
+
+</section>
+</main>
+
+<footer>
+  <p>© 2023 Your Company. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -12,15 +12,12 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Route for the homepage
+
 app.get('/', (req, res) => {
-    // Send the "index.html" file as the response
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 
-
-// MongoDB connection string from .env
 const MONGODB_URI = process.env.MONGODB_URI;
 
 
