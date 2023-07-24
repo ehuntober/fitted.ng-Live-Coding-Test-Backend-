@@ -19,7 +19,7 @@
 
     <section id="base-url">
       <h2>Base URL</h2>
-      <p>The base URL for all API endpoints is: <code>http://-your-above-url-</code></p>
+      <p>The base URL for all API endpoints is: <code>http://https://fitted.onrender.com/</code></p>
     </section>
 
     <section id="authentication">
@@ -62,7 +62,24 @@
     }</code></pre>
 
 
-    <h3>Login</h3>
+    <h3>Super Admin Login</h3>
+    <p><strong>URL:</strong> <code>/v1/auth/superadmin/login</code></p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Description:</strong> Authenticate user and obtain a JWT token.</p>
+    <h4>Request Body:</h4>
+    <pre><code>{
+      
+        "username": "superxAdmin",
+        "password": "123456"
+      
+      
+    }</code></pre>
+    <h4>Response:</h4>
+    <pre><code>{
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGJkZjNhY2I5MGU5NmExZTAyNDQ4NTQiLCJpYXQiOjE2MjkyNDc3MjJ9.QGZNgOlvPEhsJdp-CQcYGKTiVcb-EA7i9yYt48SlAaI"
+    }</code></pre>
+
+    <h3>Regular User Login</h3>
   <p><strong>URL:</strong> <code>/v1/auth/login</code></p>
   <p><strong>Method:</strong> POST</p>
   <p><strong>Description:</strong> Authenticate user and obtain a JWT token.</p>
