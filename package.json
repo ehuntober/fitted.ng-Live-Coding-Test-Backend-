@@ -18,6 +18,12 @@
     "uuid": "^9.0.0",
     "yarn": "^1.22.19"
   },
+
+  "engines": {
+    "node": ">=14"
+  },
+
+
   "repository": {
     "url": "git+https://github.com/ehuntober/fitted.ng-Live-Coding-Test-Backend-.git"
   },
